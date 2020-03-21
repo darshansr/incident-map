@@ -1,0 +1,19 @@
+
+//all the list of details of the maginitued
+properties:{
+        id: "TTR7928000300815001"
+        incidentCategory: "Road Works" ////////type icon 
+        incidentSeverity: "unknown"     ///////magnitued
+        description: "roadworks"        ///////details of the incidet
+        from: "Żeromskiego (Legionów)"  
+        to: "Zachodnia (Legionów)"
+        lengthMeters: 284
+}
+
+//taks about the points in the map
+geometry:{
+        type: "Point"
+        coordinates: Array(2)
+                    0: 19.6118959
+                    1: 51.7404146
+}
