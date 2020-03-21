@@ -24,14 +24,12 @@ export class MapAreaComponent implements AfterViewInit {
         flatMap(() => this.incidentService.getIncident())
     )
     .subscribe(data => 
-     console.log(this.incidentLists=data)
+    this.incidentLists= data
       );
-
-      
   }
 
   ngAfterViewInit() {
-    
+    this.createSVG()
   }
 
   createSVG() {
@@ -45,6 +43,8 @@ export class MapAreaComponent implements AfterViewInit {
     let staticMap = this.dom.createSvgImg();
     this.dom.setAttribute(staticMap, {
       "href": "../../assets/img/berlin_map.png",
+      "width": "100%",
+      "height": "100%",
       "preserveAspectRatio": "none"
     })
     let rect = staticMap.getBoundingClientRect();
