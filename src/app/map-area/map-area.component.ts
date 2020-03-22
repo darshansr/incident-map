@@ -41,7 +41,7 @@ export class MapAreaComponent implements OnInit {
     this.div = document.getElementById('mapView');
     let svg = this.dom.createSvg();
 
-    this.dom.setAttribute(svg, { "viewBox": "0 0 3094 1810" })
+    this.dom.setAttribute(svg, { "viewBox": "0 0 3094 1865" })
     let staticMap = this.dom.createSvgImg();
     this.dom.setAttribute(staticMap, {
       "id":"staticImage",
@@ -66,8 +66,8 @@ export class MapAreaComponent implements OnInit {
               "href": '../../assets/img/' + marker,
               "x":point.latlan[0],
               "y":point.latlan[1],
-              "width": '90',
-              "height": '90',
+              "width": '100',
+              "height": '100',
               "class":"cursor",
               "preserveAspectRatio":"none"
             })

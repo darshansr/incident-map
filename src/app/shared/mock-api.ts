@@ -1,7 +1,5 @@
 import { HttpEvent, HttpRequest, HttpResponse, HttpBackend } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
-import * as $ from 'jquery';
-declare var jQuery: any;
 export class MockXHRBackend implements HttpBackend {
 
     
