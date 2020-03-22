@@ -2,9 +2,10 @@
     <div class="left-section">
       <div class="sidebarlist top_bar">
         <div>Details</div>
-        <div>Delay</div>
+        
        
         <div>Type</div>
+        <div>Delay</div>
         
       </div>
       <div class="scrollerDiv">
@@ -12,9 +13,10 @@
           
           
           <div>{{incident.details}}</div>
-          <div>{{incident.delay}}</div> 
-          
           <div>{{incident.type}}</div>
+          <div>{{incident.delay | delay}}</div> 
+          
+          
         </div>
       </div>
     </div>

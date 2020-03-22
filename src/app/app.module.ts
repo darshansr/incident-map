@@ -14,6 +14,7 @@ import { HttpXhrBackend, HttpClientModule } from '@angular/common/http';
 import { MockXHRBackend } from './shared/mock-api';
 import { IncidentService } from './shared/incidentService';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DelayConversion } from './shared/pipe/delay-conversion';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MapAreaComponent,
     MarkerComponent,
     ZoomInOutComponent,
-    PopUpComponent
+    PopUpComponent,
+    DelayConversion
   ],
   imports: [
     BrowserModule,

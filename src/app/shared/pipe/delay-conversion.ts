@@ -1,10 +1,8 @@
-import {Pipe} from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'delay'})
-export class DelayConversion {
-    //create custom pipe to convert seconds to minutes on a give format 
-    // for ex: "6m 4s" delay
-    convertToTimeFormat(secondsValue) {
+export class DelayConversion implements PipeTransform{
+    transform(secondsValue: any) {
         if (secondsValue === 0) {
             return 'No delay';
         }
@@ -12,6 +10,8 @@ export class DelayConversion {
             minutes = Math.floor((secondsValue - hours * 3600) / 60),
             seconds = secondsValue - hours * 3600 - minutes * 60;
     
-        return (hours ? hours + 'h ' : '') + (minutes ? minutes + 'min ' : '') + (seconds ? seconds + 's' : '');
+        return (hours ? hours + 'h ' : '') + (minutes ? minutes + 'm ' : '') + (seconds ? seconds + 's' : '');
+       // throw new Error("Method not implemented.");
     }
+   
 }
