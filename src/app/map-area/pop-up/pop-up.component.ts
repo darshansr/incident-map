@@ -7,36 +7,27 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
   styleUrls: ['./pop-up.component.css']
 })
 export class PopUpComponent {
-  @Input()  incidentValue: any;
-  @Input() show:boolean;
-  @Output() popup:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() incidentValue: any;
+  @Input() show: boolean;
+  @Output() popup: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    
-    // if (changes['incidentValue'].currentValue==undefined && changes['show'].currentValue  ) {
-    //   console.log(" child componen",this.incidentValue,changes,this.show)
-    //   //this.modelClose()
-    //   this.show=this.show
-    // }
-    // else{
-    //   this.show=true
-    // }
-    if(changes['incidentValue'].currentValue!=undefined && this.incidentValue){
-     this.modelOpen();
+    if (changes['incidentValue'].currentValue != undefined && this.incidentValue) {
+      this.modelOpen();
     }
-    else{
-      this.show=false
+    else {
+      this.show = false
     }
   }
 
-  modelOpen(){
-    this.show=true;
+  modelOpen() {
+    this.show = true;
   }
   modelClose() {
     this.popup.emit(false);
   }
-  
+
 
 }

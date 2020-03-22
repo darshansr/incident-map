@@ -16,6 +16,8 @@ export class IncidentListComponent implements OnInit {
   @Input()
   data: IncidentList[];
   incidentLists: IncidentList[];
+  modalIncident: any;
+  show: boolean=false;
  
 
   constructor(private incidentService:IncidentService ) { }
@@ -28,7 +30,9 @@ export class IncidentListComponent implements OnInit {
     if (changes['data']) {
       //  this.groupPosts = this.createSVG(this.data);
         this.incidentLists=this.data;
-        this.hello(this.data)
+       if(this.incidentLists!=undefined)
+          this.incidentLists = this.incidentLists.sort((a, b) => b.delay - a.delay);
+      //  this.hello(this.data)
     }
   }
 
@@ -36,6 +40,13 @@ export class IncidentListComponent implements OnInit {
    // console.log('hielo',data)
   }
 
+  public onMarkerClick(incident:any) {
+   
+    this.modalIncident=incident
+    if(typeof incident == "boolean")
+        this.show=incident;
+        console.log("parent model",incident);
+  }
   
   
 

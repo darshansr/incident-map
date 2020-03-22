@@ -76,19 +76,19 @@ img {
     padding: 5px;
     word-break: break-all;
 }
-.sidebarlist div:first-child {
-    max-width: 50px;
+.sidebarlist div:last-child {
+    max-width: 60px;
 }
 .sidebarlist div:nth-child(2) {
-    max-width: 67px;
+    max-width: 70px
 }
 .sidebarlist.list {
     cursor: pointer;
     padding: 5px 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #022e40;
 }
 .sidebarlist.list:hover {
-    background: #f9f9f9;
+    background: #16151542;
 }
 /**/
 .top_bar .avtar img {
@@ -162,7 +162,7 @@ img {
 }
 .modelBox {
     background: rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     height: 100%;
