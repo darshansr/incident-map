@@ -1,0 +1,74 @@
+/**/
+.sidebarlist {
+    display: flex;
+    align-items: center;
+  
+}
+.sidebarlist div {
+    width: 100%;
+    padding: 5px;
+    word-break: break-all;
+}
+.sidebarlist div:last-child {
+    max-width: 60px;
+}
+.sidebarlist div:nth-child(2) {
+    max-width: 70px
+}
+.sidebarlist.list {
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid #022e40;
+}
+.sidebarlist.list:hover {
+    background: #16151542;
+}
+/**/
+.top_bar .avtar img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+
+/* left section */
+.left-section {
+    background: rgba(2, 46, 64, 0.001);
+    box-shadow: 0 0px 3px 2px #666;
+}
+.dataList {
+    height: calc(100% - 103px);
+    overflow-y: auto;
+}
+.dataList li, .add_collection li {
+    padding: 10px 15px;
+    color: #666;
+    border-bottom: 1px solid var(--lightgray);
+    display: flex;
+    align-items: center;
+    min-height: 55px;
+    cursor: pointer;
+}
+.dataId {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+    /* //background: #efefef; */
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.dataList li i {
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 14px;
+}
+.scrollerDiv {
+    overflow-y: auto;
+    height: calc(100vh - 52px);
+    display: block;
+}

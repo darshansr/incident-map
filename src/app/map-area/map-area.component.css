@@ -1,0 +1,10 @@
+/* Right section */
+.cursor {
+    cursor: pointer;
+}
+.dataListTable {
+    width: 100%;
+}
+.dataListTable td {
+    padding: 10px 5px;
+}
