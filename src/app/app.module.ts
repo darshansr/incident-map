@@ -7,12 +7,13 @@ import { IncidentListComponent } from './incident-list/incident-list.component';
 import { MapAreaComponent } from './map-area/map-area.component';
 import { MarkerComponent } from './map-area/marker/marker.component';
 import { ZoomInOutComponent } from './map-area/zoom-in-out/zoom-in-out.component';
-// import { PopUpComponent } from './map-area/pop-up/pop-up.component';
+import { PopUpComponent } from './map-area/pop-up/pop-up.component';
 //import { MarkerPointsComponent } from './map-area/marker/marker-points.component';
 import { DomFactory } from './shared/dom-helper'
 import { HttpXhrBackend, HttpClientModule } from '@angular/common/http';
 import { MockXHRBackend } from './shared/mock-api';
 import { IncidentService } from './shared/incidentService';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,12 +21,14 @@ import { IncidentService } from './shared/incidentService';
     IncidentListComponent,
     MapAreaComponent,
     MarkerComponent,
-    ZoomInOutComponent
+    ZoomInOutComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [DomFactory,IncidentService,
     { provide: HttpXhrBackend, useClass: MockXHRBackend }],

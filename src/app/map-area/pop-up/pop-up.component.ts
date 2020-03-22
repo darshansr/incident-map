@@ -1,45 +1,42 @@
-// import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
-// @Component({
-//   selector: 'app-pop-up',
-//   templateUrl: './pop-up.component.html',
-//   styleUrls: ['./pop-up.component.css']
-// })
-// export class PopUpComponent implements OnInit {
 
-//   constructor() { }
+@Component({
+  selector: 'app-pop-up',
+  templateUrl: './pop-up.component.html',
+  styleUrls: ['./pop-up.component.css']
+})
+export class PopUpComponent {
+  @Input()  incidentValue: any;
+  @Input() show:boolean;
+  @Output() popup:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-//   ngOnInit(): void {
-//   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    
+    // if (changes['incidentValue'].currentValue==undefined && changes['show'].currentValue  ) {
+    //   console.log(" child componen",this.incidentValue,changes,this.show)
+    //   //this.modelClose()
+    //   this.show=this.show
+    // }
+    // else{
+    //   this.show=true
+    // }
+    if(changes['incidentValue'].currentValue!=undefined && this.incidentValue){
+     this.modelOpen();
+    }
+    else{
+      this.show=false
+    }
+  }
+
+  modelOpen(){
+    this.show=true;
+  }
+  modelClose() {
+    this.popup.emit(false);
+  }
   
-//   //what is this function ----> create custom pop up/model 
-//   //dynamically create custom template use it in html file 
-//   //change css
 
-//   createCustomPopupBody(displayedFeatures) {
-//     return displayedFeatures.map(function(feature) {
-//         return (
-//             '<div class="tt-traffic-cluster__item">' +
-//                 '<div class="tt-traffic-icon">' +
-//                     '<div class="tt-icon-circle-' + feature.properties.incidentSeverity + ' -small">' +
-//                         '<div class="tt-icon-' + iconsMapping[feature.properties.incidentCategory] + '"></div>' +
-//                     '</div>' +
-//                 '</div>' +
-//                 '<div>' +
-//                     '<p>From: ' + feature.properties.from + '</p>' +
-//                     '<p>To: ' + feature.properties.to + '</p>' +
-//                 '</div>' +
-//             '</div>'
-//         );
-//     }).join('');
-// }
-
-// createCustomPopupHeader() {
-//   return ['Category', 'Streets', 'Length'].map(function(text) {
-//       return '<div>' + text + '</div>';
-//   }).join('');
-// }
-
-
-
-// }
+}

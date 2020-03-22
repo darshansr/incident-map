@@ -33,7 +33,7 @@ export class IncidentListComponent implements OnInit {
   }
 
   hello(data){
-    console.log('hielo',data)
+   // console.log('hielo',data)
   }
 
   

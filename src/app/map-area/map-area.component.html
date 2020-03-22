@@ -2,3 +2,6 @@
     <div id="mapView">
     </div>
   </div>
+<app-pop-up  [incidentValue]="modalIncident"
+[show]="show"
+(popup)="onMarkerClick($event)"></app-pop-up>

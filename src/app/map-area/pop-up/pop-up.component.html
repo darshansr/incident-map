@@ -1,1 +1,12 @@
-<p>pop-up works!</p>
+<div class="modelBox" *ngIf="show" (click)="modelClose()">
+  <div class="model">
+    <div class="model-head">
+      {{incidentValue.id}}
+    </div>
+    <div class="model-content">
+      <p>From: {{incidentValue.from}}</p>
+      <p>To: {{  incidentValue.to}}</p>
+      <p>Detail: {{incidentValue.details}}</p>
+    </div>
+  </div>
+</div>

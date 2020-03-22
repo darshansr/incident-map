@@ -4,9 +4,11 @@
         <div>Type</div>
         <div>Delay</div>
         <div>Details</div>
+        <a class="" ngbPopover="Popover content" popoverTitle="Simple Popover"> Show Popover </a>
+
       </div>
       <div class="scrollerDiv">
-        <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" >
+        <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" (click)="showModel(incident)">
           
           <div><span class="dataId">{{incident.type}}</span></div>
           

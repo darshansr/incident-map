@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DomFactory } from '../shared/dom-helper'
 import {  IncidentList } from '../shared/incidentService';
+import * as $ from 'jquery';
 
 
 // import { MarkerComponent } from './marker/marker.component';
@@ -17,6 +18,9 @@ export class MapAreaComponent implements OnInit {
   data: IncidentList[];
   incidentLists: IncidentList[];
   points = []
+  modalIncident: any;
+  show: boolean=false;
+
 
   constructor(private dom: DomFactory) { }
 
@@ -30,7 +34,6 @@ export class MapAreaComponent implements OnInit {
       this.createMarker(this.data)
     }
   }
-
   createMap() {
     this.div = document.getElementById('mapView');
     let svg = this.dom.createSvg();
@@ -53,6 +56,7 @@ export class MapAreaComponent implements OnInit {
       data.filter((incident) =>{
         if (incident.id === point.id) {
           let markerImg = this.dom.createSvgImg();
+          
           this.dom.setAttribute(markerImg,
             {
               "id": point.id,
@@ -64,8 +68,12 @@ export class MapAreaComponent implements OnInit {
               "class":"cursor",
               "preserveAspectRatio":"none"
             })
+            markerImg.addEventListener("click", () => this.onMarkerClick(incident))
+
+    
+           
           let staticImg=document.getElementById("staticImage")
-          staticImg.after(markerImg);
+         staticImg.after(markerImg);
         }
         else{
           //points are needs to be defined
@@ -77,12 +85,20 @@ export class MapAreaComponent implements OnInit {
   generateLatLon(data:IncidentList[]) {
     if (data !== undefined) {
       data.forEach((val, index) => {
-        let x = Math.floor(Math.random() * 3100);
-        let y = Math.floor(Math.random() * 1900);
+        let x = Math.floor(Math.random() * 3000);
+        let y = Math.floor(Math.random() * 1800);
         this.points.push({ id: val.id, latlan: [x, y] })
       })
     }
+  
 
   }
 
+  public onMarkerClick(incident:any) {
+   
+    this.modalIncident=incident
+    if(typeof incident == "boolean")
+        this.show=incident;
+        console.log("parent model",incident);
+  }
 }
