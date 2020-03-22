@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { timer } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, mergeMap } from 'rxjs/operators';
 import { IncidentService,IncidentList } from '../shared/incidentService';
+import { DomFactory } from '../shared/dom-helper';
+declare var $:JQueryStatic;
+
 
 @Component({
   selector: 'app-incident-list',
@@ -9,20 +12,28 @@ import { IncidentService,IncidentList } from '../shared/incidentService';
   styleUrls: ['./incident-list.component.css']
 })
 export class IncidentListComponent implements OnInit {
+  
+  @Input()
+  data: IncidentList[];
   incidentLists: IncidentList[];
+ 
 
-  constructor(public incidentService:IncidentService) {
+  constructor(private incidentService:IncidentService ) { }
+  ngOnInit() {
+    //this.hello(data);
   }
 
-  ngOnInit() {
-    timer(1000,2000)
-    .pipe(
-        flatMap(() => this.incidentService.getIncident())
-    )
-    .subscribe(data => 
-     this.incidentLists=data
-      );
-     
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['data']) {
+      //  this.groupPosts = this.createSVG(this.data);
+        this.incidentLists=this.data;
+        this.hello(this.data)
+    }
+  }
+
+  hello(data){
+    console.log('hielo',data)
   }
 
   

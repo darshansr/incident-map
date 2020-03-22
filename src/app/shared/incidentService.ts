@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/internal/operators/map';
+//import {map } from 'rxjs/add/operator/map';
 
 @Injectable({
     providedIn: 'root'
 })
 export class IncidentService {
-    constructor(private http: HttpClient) {
+   
+    constructor(private _http: HttpClient) {
 
     }
 
     public getIncident() {
-        return this.http.get<IncidentListResponse>('incidentLists')
+        const url = '../../assets/incidents.json';
+        return this._http.get<IncidentListResponse>('incidentLists')
             .pipe(
                 map((response: IncidentListResponse) => {
                     return response.incidentLists;

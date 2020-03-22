@@ -1,8 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DomFactory } from '../shared/dom-helper'
-import { flatMap } from 'rxjs/operators';
-import { timer } from 'rxjs';
-import { IncidentService, IncidentList } from '../shared/incidentService';
+import {  IncidentList } from '../shared/incidentService';
+
 
 // import { MarkerComponent } from './marker/marker.component';
 
@@ -12,84 +11,78 @@ import { IncidentService, IncidentList } from '../shared/incidentService';
   templateUrl: './map-area.component.html',
   styleUrls: ['./map-area.component.css']
 })
-export class MapAreaComponent implements AfterViewInit {
+export class MapAreaComponent implements OnInit {
   div: HTMLElement;
+  @Input()
+  data: IncidentList[];
   incidentLists: IncidentList[];
+  points = []
 
-  constructor(private dom: DomFactory,private incidentService:IncidentService ) { }
+  constructor(private dom: DomFactory) { }
 
   ngOnInit() {
-    timer(1000,2000)
-    .pipe(
-        flatMap(() => this.incidentService.getIncident())
-    )
-    .subscribe(data => 
-    this.incidentLists= data
-      );
+    this.createMap()
   }
 
-  ngAfterViewInit() {
-    this.createSVG()
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['data']) {
+      this.createMarker(this.data)
+    }
   }
 
-  createSVG() {
-    console.log(this.incidentLists)
+  createMap() {
     this.div = document.getElementById('mapView');
     let svg = this.dom.createSvg();
 
     this.dom.setAttribute(svg, { "viewBox": "0 0 3094 1810" })
-
-    
     let staticMap = this.dom.createSvgImg();
     this.dom.setAttribute(staticMap, {
+      "id":"staticImage",
       "href": "../../assets/img/berlin_map.png",
       "width": "100%",
       "height": "100%",
       "preserveAspectRatio": "none"
     })
-    let rect = staticMap.getBoundingClientRect();
-    console.log("svg bounding client",rect)
     svg.appendChild(staticMap);
-    let markerImg = this.dom.createSvgImg();
-    this.dom.setAttribute(markerImg, {
-      "href": '../../assets/img/1.png',
-      "x": '500',
-      "y": '450',
-      "width": "90",
-      "height": "90",
-      "preserveAspectRatio": "none",
-      "class": "cursor"
-    })
-
-    // this.points.forEach((i, index) => {
-    //   const pointImg = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    //   pointImg.setAttribute("id", this.incidentLists[index].id)
-
-    //   switch (this.incidentLists[index].type) {
-    //     case 1:
-    //       pointImg.setAttribute("href", '../assets/img/1.png');
-    //       break;
-    //     case 2:
-    //       pointImg.setAttribute("href", '../assets/img/2.png');
-    //       break;
-    //     case 3:
-    //       pointImg.setAttribute("href", '../assets/img/3.png');
-    //       break;
-    //     default:
-    //       pointImg.setAttribute("href", '../assets/img/1.png');
-    //       break;
-    //   }
-
-    //   pointImg.setAttribute("x", i.x);
-    //   pointImg.setAttribute("y", i.y);
-    //   pointImg.setAttribute("height", '90');
-    //   pointImg.setAttribute("width", '90');
-    //   pointImg.setAttribute("class", "cursor");
-    //   pointImg.addEventListener("click", () => this.showModel(this.incidentLists[index]));
-    //   svg.appendChild(pointImg);
-    // })
-    svg.appendChild(markerImg);
     this.div.appendChild(svg)
+  }
+  createMarker(data:IncidentList[]) {
+    this.generateLatLon(data)
+    this.points.forEach((point, index) => {
+      data.filter((incident) =>{
+        if (incident.id === point.id) {
+          let markerImg = this.dom.createSvgImg();
+          this.dom.setAttribute(markerImg,
+            {
+              "id": point.id,
+              "href": '../../assets/img/' + incident.type + '.png',
+              "x":point.latlan[0],
+              "y":point.latlan[1],
+              "width": '90',
+              "height": '90',
+              "class":"cursor",
+              "preserveAspectRatio":"none"
+            })
+          let staticImg=document.getElementById("staticImage")
+          staticImg.after(markerImg);
+        }
+        else{
+          //points are needs to be defined
+        }
+      });
+    })
+    
+  }
+  generateLatLon(data:IncidentList[]) {
+    if (data !== undefined) {
+      data.forEach((val, index) => {
+        let x = Math.floor(Math.random() * 3100);
+        let y = Math.floor(Math.random() * 1900);
+        this.points.push({ id: val.id, latlan: [x, y] })
+      })
+    }
+
   }
 
 }

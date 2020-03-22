@@ -7,9 +7,12 @@
       </div>
       <div class="scrollerDiv">
         <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" >
+          
           <div><span class="dataId">{{incident.type}}</span></div>
+          
           <div>{{incident.delay}}</div> 
           <div>{{incident.details}}</div>
         </div>
       </div>
     </div>
+    

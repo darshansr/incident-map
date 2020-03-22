@@ -1,9 +1,10 @@
 import { HttpEvent, HttpRequest, HttpResponse, HttpBackend } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
-
+import * as $ from 'jquery';
+declare var jQuery: any;
 export class MockXHRBackend implements HttpBackend {
 
-
+    
     private incidentLists = [
         {
             "id": "europe_HD_DE_TTL6000",
@@ -78,7 +79,7 @@ export class MockXHRBackend implements HttpBackend {
                 case 'GET':
                     if (request.url === 'incidentLists') {
                         responseOptions = {
-                            body: { incidentLists: JSON.parse(JSON.stringify(this.incidentLists)) },
+                            body: { incidentLists: this.incidentLists },
                             status: 200
                         };
                     }
