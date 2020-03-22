@@ -1,10 +1,10 @@
 import { Directive, Input, Output, HostListener, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: '[appSortBy]'
+    selector: '[appModel]'
 })
 
-export class SortByDirective {
+export class Model {
   private sortProperty: string;
 
   @Output()
@@ -22,5 +22,5 @@ export class SortByDirective {
     event.preventDefault();
     this.sorted.next(this.sortProperty); // Raise clicked event
   }
-    
+     
 }

@@ -1,0 +1,12 @@
+<div class="modelBox" *ngIf="show" (click)="modelClose()">
+  <div class="model">
+    <div class="model-head">
+      <p>Magnitude of delay <b>{{incidentValue.magnitudeDetails}}</b></p>
+    </div>
+    <div class="model-content">
+      <p><b>From: </b>{{incidentValue.from}}</p>
+      <p><b>To: </b>{{  incidentValue.to}}</p>
+      <p><b>Details: </b> {{incidentValue.details}}</p>
+    </div>
+  </div>
+</div>

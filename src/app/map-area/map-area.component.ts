@@ -1,10 +1,7 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { DomFactory } from '../shared/dom-helper'
 import {  IncidentList } from '../shared/incidentService';
-import * as $ from 'jquery';
 
-
-// import { MarkerComponent } from './marker/marker.component';
 
 
 @Component({
@@ -20,6 +17,12 @@ export class MapAreaComponent implements OnInit {
   points = []
   modalIncident: any;
   show: boolean=false;
+  incidentMapping = {
+    0:'default.png',
+      1: 'jam.png',
+      2: 'dangerous_conditions.png',
+      3: 'lane_closed.png'
+    };
 
 
   constructor(private dom: DomFactory) { }
@@ -56,11 +59,11 @@ export class MapAreaComponent implements OnInit {
       data.filter((incident) =>{
         if (incident.id === point.id) {
           let markerImg = this.dom.createSvgImg();
-          
+          let marker = this.incidentMapping[incident.type] || this.incidentMapping[0];
           this.dom.setAttribute(markerImg,
             {
               "id": point.id,
-              "href": '../../assets/img/' + incident.type + '.png',
+              "href": '../../assets/img/' + marker,
               "x":point.latlan[0],
               "y":point.latlan[1],
               "width": '90',
@@ -68,10 +71,7 @@ export class MapAreaComponent implements OnInit {
               "class":"cursor",
               "preserveAspectRatio":"none"
             })
-            markerImg.addEventListener("click", () => this.onMarkerClick(incident))
-
-    
-           
+            markerImg.addEventListener("click", () => this.modelEvent(incident))
           let staticImg=document.getElementById("staticImage")
          staticImg.after(markerImg);
         }
@@ -90,15 +90,12 @@ export class MapAreaComponent implements OnInit {
         this.points.push({ id: val.id, latlan: [x, y] })
       })
     }
-  
-
   }
 
-  public onMarkerClick(incident:any) {
-   
+
+  public modelEvent(incident:any) {
     this.modalIncident=incident
     if(typeof incident == "boolean")
         this.show=incident;
-        console.log("parent model",incident);
   }
 }

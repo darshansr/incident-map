@@ -1,26 +1,16 @@
-
-    <div class="left-section">
-      <div class="sidebarlist top_bar">
-        <div>Details</div>
-        
-       
-        <div>Type</div>
-        <div>Delay</div>
-        
-      </div>
-      <div class="scrollerDiv">
-        <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" (click)="onMarkerClick(incident)">
-          
-          
-          <div>{{incident.details}}</div>
-          <div>{{incident.type}}</div>
-          <div>{{incident.delay | delay}}</div> 
-          
-          
-        </div>
-      </div>
+<div class="left-section">
+  <div class="sidebarlist top_bar">
+    <div>Details</div>
+    <div>Type</div>
+    <div>Delay</div>
+  </div>
+  <div class="scrollerDiv">
+    <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" (click)="modelEvent(incident)">
+      <div>{{incident.details}}</div>
+      <div>{{incident.incident}}</div>
+      <div appSortBy="delay" (sorted)="sort($event)">{{incident.delay | delay}}</div>
     </div>
-    
-    <app-pop-up  [incidentValue]="modalIncident"
-    [show]="show"
-    (popup)="onMarkerClick($event)"></app-pop-up>
+  </div>
+</div>
+
+<app-pop-up [incidentValue]="modalIncident" [show]="show" (popup)="modelEvent($event)"></app-pop-up>
