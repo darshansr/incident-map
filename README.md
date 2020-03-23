@@ -10,6 +10,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. Make sure you have these installed
   - [node.js](http://nodejs.org/)
   - [git](http://git-scm.com/)
+  - install Angular CLI 
+      npm install -g @angular/cli
 
 2. Clone this repository into your local machine using the terminal (mac) or Gitbash (PC) 
 
