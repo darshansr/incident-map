@@ -17,12 +17,12 @@ export class AppComponent implements OnInit {
   constructor(public incidentService:IncidentService) {
   }
   ngOnInit() {
-    timer(1000,20000)
+    timer(1,120000)
     .pipe(
       flatMap(() => this.incidentService.getIncident())
     )
     .subscribe(val => 
-        console.log(this.incidentLists=val)
+        this.incidentLists=val
     );
   }
      

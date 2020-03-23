@@ -15,6 +15,11 @@ body {
 .cursor {
     cursor: pointer;
 }
+.tooltip-style {
+    font-size:50px;
+    stroke:#0f0f0e25; stroke-width:0.6em;
+    fill:rgb(255, 0, 0)
+}
 ul {
     list-style: none;
 }

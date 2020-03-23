@@ -25,6 +25,9 @@ export class DomFactory {
         return document.createElementNS(tag,value);
     }
 
+    private svgTextSpanElement(tag: any,value: string){
+        return document.createElementNS(tag,value);
+    }
     
     createSvg(){
         return this.svgElement("http://www.w3.org/2000/svg","svg")
@@ -32,11 +35,11 @@ export class DomFactory {
     createSvgImg(){
         return this.svgImgElement("http://www.w3.org/2000/svg","image")
     }
-    createItem() {
-        return this.elementProducer('li', 'list-item','class');
+    createSvgText(){
+        return this.svgImgElement("http://www.w3.org/2000/svg","text")
     }
-    createList() {
-        return this.elementProducer('ul', 'results-list','class');
+    createSvgTSpan(){
+        return this.svgTextSpanElement("http://www.w3.org/2000/svg","tspan")
     }
 
     setAttribute(tag:any,attribute:object){

@@ -5,10 +5,17 @@
     <div>Delay</div>
   </div>
   <div class="scrollerDiv">
-    <div class="sidebarlist list" *ngFor="let incident of incidentLists; let i=index" (click)="modelEvent(incident)">
+
+
+    <div tooltip="<p>Magnitude of delay <b>{{incident.magnitudeDetails}}</b></p> <p><b>From: </b>{{incident.from}}</p>
+      <p><b>To: </b>{{  incident.to}}</p>
+      <p><b>Details: </b> {{incident.details}}</p>" show-delay="300" placement="top" class="sidebarlist list"
+      *ngFor="let incident of incidentLists;" (click)="modelEvent(incident)">
+
       <div>{{incident.details}}</div>
       <div>{{incident.incident}}</div>
-      <div appSortBy="delay" (sorted)="sort($event)">{{incident.delay | delay}}</div>
+      <div>{{incident.delay | delay}}</div>
+
     </div>
   </div>
 </div>

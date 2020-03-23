@@ -3,7 +3,6 @@ import { IncidentList } from '../shared/incidentService';
 import { SortService } from '../shared/sort.service';
 
 
-
 @Component({
   selector: 'app-incident-list',
   templateUrl: './incident-list.component.html',
@@ -24,11 +23,13 @@ export class IncidentListComponent implements OnInit {
     2: 'Dangerous Conditions',
     3: 'Lane closed'
   };
-
+ 
   constructor(private sortService: SortService) { }
 
   ngOnInit() {
   }
+  
+  
 
   //load the data into UI template by mapping incident value into new key value
   ngOnChanges(changes: SimpleChanges) {

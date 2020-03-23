@@ -1,9 +1,11 @@
-
-
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-3 leftcol" ><app-incident-list [data]="incidentLists"></app-incident-list></div>
-            <div class="col-9 rightcol"><app-map-area [data]="incidentLists">
-            </app-map-area> </div>
-          </div>  
-    </main>
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-3 leftcol">
+            <app-incident-list [data]="incidentLists"></app-incident-list>
+        </div>
+        <div class="col-9 rightcol">
+            <app-map-area [data]="incidentLists">
+            </app-map-area>
+        </div>
+    </div>
+</main>
