@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
+# DEMO
+[a link](https://darshansr.github.io/angular-demo-map/)
+
 ## Project Description
   Berlin Traffic incident on Static SVG Image
     
