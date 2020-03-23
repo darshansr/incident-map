@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 2. Clone this repository into your local machine using the terminal (mac) or Gitbash (PC) 
 
-    `git clone 
+    `git clone https://github.com/darshansr/incident-map.git `
     
 3. CD to the folder
 
