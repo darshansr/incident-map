@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChildren } from '@angular/core';
 import { IncidentList } from '../shared/incidentService';
 import { SortService } from '../shared/sort.service';
+import {NgbPopoverConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class IncidentListComponent implements OnInit {
   modalIncident: any;
   show: boolean = false;
 
+
   //create an interface to map incident
   incidentMapping:object = {
     0: 'default',
@@ -23,8 +25,13 @@ export class IncidentListComponent implements OnInit {
     2: 'Dangerous Conditions',
     3: 'Lane closed'
   };
+  click1: string="hover";
+  someTooltip: any;
  
-  constructor(private sortService: SortService) { }
+  constructor(private sortService: SortService,config:NgbPopoverConfig) {
+    config.placement = 'top';
+    config.triggers = 'click';
+   }
 
   ngOnInit() {
   }
@@ -68,4 +75,11 @@ export class IncidentListComponent implements OnInit {
     this.sortService.sortDelay(this.data, prop);
   }
 
+
+  onMarkerClick(name: HTMLInputElement) {
+    let id=( <HTMLInputElement >event.target).id;
+    console.log(( <HTMLInputElement >event.target).id);
+    document.querySelector(id)
+  }
+  
 }

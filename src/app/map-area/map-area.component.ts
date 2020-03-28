@@ -92,8 +92,8 @@ export class MapAreaComponent implements OnInit {
           tspan.innerHTML = "Traffic Incident is " + incident.details;
 
 
-          markerImg.addEventListener("mousemove", () => this.showTooltip(incident))
-          markerImg.addEventListener("mouseout", () => this.hideTooltip(incident))
+          markerImg.addEventListener("mousemove", () => this.showTooltip(incident.id))
+          markerImg.addEventListener("mouseout", () => this.hideTooltip(incident.id))
 
           markerImg.addEventListener("click", () => this.modelEvent(incident))
           let staticImg = document.getElementById("staticImage")
@@ -127,14 +127,28 @@ export class MapAreaComponent implements OnInit {
       this.show = incident;
   }
 
-  private showTooltip(incident: IncidentList) {
-    var tooltip = document.getElementById("tooltip-" + incident.id);
+  private showTooltip(incident: any) {
+    var tooltip = document.getElementById("tooltip-" + incident);
+    if(tooltip!=undefined)
     this.dom.setAttribute(tooltip, { "visibility": "visible" });
   }
 
-  private hideTooltip(incident: IncidentList) {
-    var tooltip = document.getElementById("tooltip-" + incident.id);
+  private hideTooltip(incident: any) {
+    var tooltip = document.getElementById("tooltip-" + incident);
+    if(tooltip!=undefined)
     this.dom.setAttribute(tooltip, { "visibility": "hidden" })
 
+  }
+
+  onListClick(name:HTMLInputElement) {
+    var id=( <HTMLInputElement >event.target).id;
+    var text=document.querySelectorAll('text');
+    text.forEach((point, index) => {
+        point.setAttribute("visibility","hidden")
+    })
+    this.showTooltip(id)
+    setTimeout(()=>{
+      this.hideTooltip(id)
+    },2600)
   }
 }
