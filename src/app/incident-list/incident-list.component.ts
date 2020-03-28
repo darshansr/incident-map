@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, ViewChildren } from '@angular/core';
 import { IncidentList } from '../shared/incidentService';
 import { SortService } from '../shared/sort.service';
-import {NgbPopoverConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,26 +17,23 @@ export class IncidentListComponent implements OnInit {
   modalIncident: any;
   show: boolean = false;
 
-
   //create an interface to map incident
-  incidentMapping:object = {
+  incidentMapping: object = {
     0: 'default',
     1: 'Jam',
     2: 'Dangerous Conditions',
     3: 'Lane closed'
   };
-  click1: string="hover";
-  someTooltip: any;
- 
-  constructor(private sortService: SortService,config:NgbPopoverConfig) {
+  
+  constructor(private sortService: SortService, config: NgbPopoverConfig) {
     config.placement = 'top';
     config.triggers = 'click';
-   }
+  }
 
   ngOnInit() {
   }
-  
-  
+
+
 
   //load the data into UI template by mapping incident value into new key value
   ngOnChanges(changes: SimpleChanges) {
@@ -77,9 +74,18 @@ export class IncidentListComponent implements OnInit {
 
 
   onMarkerClick(name: HTMLInputElement) {
-    let id=( <HTMLInputElement >event.target).id;
-    console.log(( <HTMLInputElement >event.target).id);
-    document.querySelector(id)
+    let id = (<HTMLInputElement>event.target).id;
+    console.log((<HTMLInputElement>event.target).id);
+    let ul = document.querySelector(".scrollerDiv");
+    Array.from(ul.children).forEach(function (element) {
+      element.setAttribute("style", "");
+    });
+
+    let text = document.getElementById(id);
+    text.style.backgroundColor = "yellow"
+    setTimeout(() => {
+      text.style.backgroundColor = ""
+    }, 2600)
   }
-  
+
 }

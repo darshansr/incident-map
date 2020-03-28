@@ -12,9 +12,8 @@ import { IncidentService } from './shared/incidentService';
 import { DelayConversion } from './shared/pipe/delay-conversion';
 import { SortService } from './shared/sort.service';
 import { SortByDirective } from './shared/directive/sort-by.directive';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ng2-tooltip-directive';
-
 
 
 @NgModule({

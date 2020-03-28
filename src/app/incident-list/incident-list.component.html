@@ -10,7 +10,9 @@
     <div trigger="click" tooltip="<p>Magnitude of delay <b>{{incident.magnitudeDetails}}</b></p> <p><b>From: </b>{{incident.from}}</p>
       <p><b>To: </b>{{  incident.to}}</p>
       <p><b>Details: </b> {{incident.details}}</p>"  placement="top" class="sidebarlist list"
-      *ngFor="let incident of incidentLists;" (click)="modelEvent(incident)">
+      *ngFor="let incident of incidentLists;" (click)="modelEvent(incident)"
+     
+      [attr.id]="incident.id">
     
         <div [attr.id]="incident.id">{{incident.details}}</div>
         <div [attr.id]="incident.id">{{incident.incident}}</div>
