@@ -24,7 +24,7 @@ export class IncidentListComponent implements OnInit {
     2: 'Dangerous Conditions',
     3: 'Lane closed'
   };
-  
+
   constructor(private sortService: SortService, config: NgbPopoverConfig) {
     config.placement = 'top';
     config.triggers = 'click';
@@ -32,7 +32,6 @@ export class IncidentListComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 
   //load the data into UI template by mapping incident value into new key value
@@ -58,13 +57,6 @@ export class IncidentListComponent implements OnInit {
       this.incidentLists = this.data;
       this.incidentLists = this.incidentLists.sort((a, b) => b.delay - a.delay);
     }
-  }
-
-  //Best Approach is to create custom model as service to access across the application
-  public modelEvent(incident: any) {
-    this.modalIncident = incident
-    if (typeof incident == "boolean")
-      this.show = incident;
   }
 
   //TODO on click of header item in the incident list by ascending and descending

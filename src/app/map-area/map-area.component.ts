@@ -95,7 +95,6 @@ export class MapAreaComponent implements OnInit {
           markerImg.addEventListener("mousemove", () => this.showTooltip(incident.id))
           markerImg.addEventListener("mouseout", () => this.hideTooltip(incident.id))
 
-          markerImg.addEventListener("click", () => this.modelEvent(incident))
           let staticImg = document.getElementById("staticImage")
           staticImg.after(markerImg);
 
@@ -121,12 +120,6 @@ export class MapAreaComponent implements OnInit {
   }
 
 
-  public modelEvent(incident: IncidentList) {
-    this.modalIncident = incident
-    if (typeof incident == "boolean")
-      this.show = incident;
-  }
-
   private showTooltip(incident: any) {
     var tooltip = document.getElementById("tooltip-" + incident);
     if(tooltip!=undefined)
@@ -140,9 +133,9 @@ export class MapAreaComponent implements OnInit {
 
   }
 
-  onListClick(name:HTMLInputElement) {
-    var id=( <HTMLInputElement >event.target).id;
-    var text=document.querySelectorAll('text');
+  onListClick(name: HTMLInputElement) {
+    let id=( <HTMLInputElement >event.target).id;
+    let text=document.querySelectorAll('text');
     text.forEach((point, index) => {
         point.setAttribute("visibility","hidden")
     })
