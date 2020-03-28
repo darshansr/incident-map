@@ -1,27 +1,52 @@
-# TrafficIncidentApp
+# Traffic- Incident -App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
-## Development server
+# [DEMO](https://darshansr.github.io/angular-demo-map/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Project Description
+  Berlin Traffic incident on Static SVG Image
+    
+## Instructions
 
-## Code scaffolding
+1. Make sure you have these installed
+  - [node.js](http://nodejs.org/)
+  - [git](http://git-scm.com/)
+  - install Angular CLI 
+      npm install -g @angular/cli
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Clone this repository into your local machine using the terminal (mac) or Gitbash (PC) 
 
-## Build
+    `git clone https://github.com/darshansr/incident-map.git `
+    
+3. CD to the folder
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+    `cd incident-map`
 
-## Running unit tests
+    and then fetch all of the remote branches for the repository
+    
+    `git fetch --all` 
+    
+4. Run the following to install the project dependencies:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    `npm install`
+    
+5. Run the ng serve command to build the code, watch for file changes, and serve up the site locally:
 
-## Running end-to-end tests
+    `ng serve`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+6. Navigate to http://localhost:4200. The app will automatically reload if you change any of the source files.
 
-## Further help
+    `http://localhost:4200/`
+
+
+
+## Angular CLI
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## More Stuff
+Check out some of my [other courses on LinkedIn Learning](https://www.linkedin.com/learning/instructors/justin-schwartzenberger?u=2125562). 
+You can also [follow me on twitter](https://twitter.com/schwarty).
