@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, ViewChildren } from '@angular/core';
 import { IncidentList } from '../shared/incidentService';
 import { SortService } from '../shared/sort.service';
-import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -25,9 +24,7 @@ export class IncidentListComponent implements OnInit {
     3: 'Lane closed'
   };
 
-  constructor(private sortService: SortService, config: NgbPopoverConfig) {
-    config.placement = 'top';
-    config.triggers = 'click';
+  constructor(private sortService: SortService) {
   }
 
   ngOnInit() {
@@ -67,7 +64,6 @@ export class IncidentListComponent implements OnInit {
 
   onMarkerClick(name: HTMLInputElement) {
     let id = (<HTMLInputElement>event.target).id;
-    console.log((<HTMLInputElement>event.target).id);
     let ul = document.querySelector(".scrollerDiv");
     Array.from(ul.children).forEach(function (element) {
       element.setAttribute("style", "");

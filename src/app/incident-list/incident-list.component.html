@@ -5,9 +5,7 @@
     <div>Delay</div>
   </div>
   <div class="scrollerDiv">
-
-
-    <div trigger="click" tooltip="<p>Magnitude of delay <b>{{incident.magnitudeDetails}}</b></p> <p><b>From: </b>{{incident.from}}</p>
+    <div hide-delay="0" trigger="hover" tooltip="<p>Magnitude of delay <b>{{incident.magnitudeDetails}}</b></p> <p><b>From: </b>{{incident.from}}</p>
       <p><b>To: </b>{{  incident.to}}</p>
       <p><b>Details: </b> {{incident.details}}</p>"  placement="top" class="sidebarlist list"
       *ngFor="let incident of incidentLists;" 
