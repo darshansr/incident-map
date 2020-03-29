@@ -111,7 +111,7 @@ export class MapAreaComponent implements OnInit {
   }
   private generateLatLon(data: IncidentList[]) {
     if (data !== undefined) {
-      data.forEach((val, index) => {
+      data.forEach((val) => {
         let x = Math.floor(Math.random() * 3000);
         let y = Math.floor(Math.random() * 1800);
         this.points.push({ id: val.id, latlan: [x, y] })
@@ -121,22 +121,22 @@ export class MapAreaComponent implements OnInit {
 
 
   private showTooltip(incident: any) {
-    var tooltip = document.getElementById("tooltip-" + incident);
+    let tooltip = document.getElementById("tooltip-" + incident);
     if(tooltip!=undefined)
     this.dom.setAttribute(tooltip, { "visibility": "visible" });
   }
 
   private hideTooltip(incident: any) {
-    var tooltip = document.getElementById("tooltip-" + incident);
+    let tooltip = document.getElementById("tooltip-" + incident);
     if(tooltip!=undefined)
     this.dom.setAttribute(tooltip, { "visibility": "hidden" })
 
   }
 
-  onListClick(name: HTMLInputElement) {
+  onListClick() {
     let id=( <HTMLInputElement >event.target).id;
     let text=document.querySelectorAll('text');
-    text.forEach((point, index) => {
+    text.forEach((point) => {
         point.setAttribute("visibility","hidden")
     })
     this.showTooltip(id)

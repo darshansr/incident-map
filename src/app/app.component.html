@@ -1,10 +1,10 @@
 <main class="container-fluid">
     <div class="row">
         <div class="col-3 leftcol">
-            <app-incident-list [data]="incidentLists" #list (click)="map.onListClick($event)"></app-incident-list>
+            <app-incident-list [data]="incidentLists" #list (click)="map.onListClick()"></app-incident-list>
         </div>
         <div class="col-9 rightcol">
-            <app-map-area [data]="incidentLists" #map (click)="list.onMarkerClick($event)" >
+            <app-map-area [data]="incidentLists" #map (click)="list.onMarkerClick()" >
             </app-map-area>
         </div>
     </div>

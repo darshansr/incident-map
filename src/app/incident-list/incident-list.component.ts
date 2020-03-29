@@ -13,8 +13,6 @@ export class IncidentListComponent implements OnInit {
   @Input()
   data: IncidentList[];
   incidentLists: IncidentList[];
-  modalIncident: any;
-  show: boolean = false;
 
   //create an interface to map incident
   incidentMapping: object = {
@@ -35,7 +33,7 @@ export class IncidentListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     if (changes['data'].currentValue != undefined && this.data) {
-      this.data.forEach((point, index) => {
+      this.data.forEach((point) => {
         switch (point.type) {
           case 1:
             point['incident'] = this.incidentMapping['1'];
@@ -62,10 +60,10 @@ export class IncidentListComponent implements OnInit {
   }
 
 
-  onMarkerClick(name: HTMLInputElement) {
+  onMarkerClick() {
     let id = (<HTMLInputElement>event.target).id;
-    let ul = document.querySelector(".scrollerDiv");
-    Array.from(ul.children).forEach(function (element) {
+    let listDiv = document.querySelector(".scrollerDiv");
+    Array.from(listDiv.children).forEach(function (element) {
       element.setAttribute("style", "");
     });
 

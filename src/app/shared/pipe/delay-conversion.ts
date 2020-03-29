@@ -6,12 +6,11 @@ export class DelayConversion implements PipeTransform{
         if (secondsValue === 0) {
             return 'No delay';
         }
-        var hours = Math.floor(secondsValue / 3600),
+        let hours = Math.floor(secondsValue / 3600),
             minutes = Math.floor((secondsValue - hours * 3600) / 60),
             seconds = secondsValue - hours * 3600 - minutes * 60;
     
         return (hours ? hours + 'h ' : '') + (minutes ? minutes + 'm ' : '') + (seconds ? seconds + 's' : '');
-       // throw new Error("Method not implemented.");
     }
    
 }
