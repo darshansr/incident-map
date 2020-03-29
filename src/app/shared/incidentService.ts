@@ -13,7 +13,6 @@ export class IncidentService {
     }
 
     public getIncident() {
-        const url = '../../assets/incidents.json';
         return this._http.get<IncidentListResponse>('incidentLists')
             .pipe(
                 map((response: IncidentListResponse) => {

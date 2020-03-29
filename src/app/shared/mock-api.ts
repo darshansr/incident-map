@@ -1,8 +1,6 @@
 import { HttpEvent, HttpRequest, HttpResponse, HttpBackend } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 export class MockXHRBackend implements HttpBackend {
-
-    
     private incidentLists = [
         {
             "id": "europe_HD_DE_TTL6000",
@@ -85,9 +83,6 @@ export class MockXHRBackend implements HttpBackend {
             const responseObject = new HttpResponse(responseOptions);
             responseObserver.next(responseObject);
             responseObserver.complete();
-            return () => {
-
-            };
         })
     }
 }
