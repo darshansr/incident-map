@@ -12,6 +12,17 @@ body {
     padding: 0;
     margin: 0;
 }
+
+.tooltip-style {
+    font-size:50px;
+    background: cornsilk;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    display:"block";
+
+}
 .cursor {
     cursor: pointer;
 }

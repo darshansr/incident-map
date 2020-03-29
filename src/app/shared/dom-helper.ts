@@ -25,6 +25,17 @@ export class DomFactory {
         return document.createElementNS(tag,value);
     }
 
+    private svgTextSpanElement(tag: any,value: string){
+        return document.createElementNS(tag,value);
+    }
+
+    private svgTagGroupElement(tag: any,value: string){
+        return document.createElementNS(tag,value);
+    }
+    
+    private svgTagRectElement(tag: any,value: string){
+        return document.createElementNS(tag,value);
+    }
     
     createSvg(){
         return this.svgElement("http://www.w3.org/2000/svg","svg")
@@ -32,19 +43,26 @@ export class DomFactory {
     createSvgImg(){
         return this.svgImgElement("http://www.w3.org/2000/svg","image")
     }
-    createItem() {
-        return this.elementProducer('li', 'list-item','class');
+    createSvgText(){
+        return this.svgImgElement("http://www.w3.org/2000/svg","text")
     }
-    createList() {
-        return this.elementProducer('ul', 'results-list','class');
+    createSvgTSpan(){
+        return this.svgTextSpanElement("http://www.w3.org/2000/svg","tspan")
     }
 
+    createSvgTagG(){
+        return this.svgTagGroupElement("http://www.w3.org/2000/svg","g")
+    }
+    createSvgTagRect(){
+        return this.svgTagRectElement("http://www.w3.org/2000/svg","rect")
+    }
     setAttribute(tag:any,attribute:object){
         for (var prop in attribute) {
             tag.setAttribute(prop,attribute[prop]);
         }
         return tag;
     }
+    
     
     
 }
