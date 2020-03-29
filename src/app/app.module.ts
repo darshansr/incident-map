@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IncidentListComponent } from './incident-list/incident-list.component';
 import { MapAreaComponent } from './map-area/map-area.component';
-import { PopUpComponent } from './pop-up/pop-up.component';
 import { DomFactory } from './shared/dom-helper'
 import { HttpXhrBackend, HttpClientModule } from '@angular/common/http';
 import { MockXHRBackend } from './shared/mock-api';
@@ -20,7 +19,6 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     AppComponent,
     IncidentListComponent,
     MapAreaComponent,
-    PopUpComponent,
     DelayConversion,
     SortByDirective
   ],
