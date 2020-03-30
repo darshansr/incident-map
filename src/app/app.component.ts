@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
-import { flatMap, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { IncidentService,IncidentList } from './shared/incidentService';
 
 
@@ -16,10 +16,11 @@ export class AppComponent implements OnInit {
 
   constructor(public incidentService:IncidentService) {
   }
+
   ngOnInit() {
     timer(1,120000)
     .pipe(
-      flatMap(() => this.incidentService.getIncident())
+      mergeMap(() => this.incidentService.getIncident())
     )
     .subscribe(val => 
         this.incidentLists=val

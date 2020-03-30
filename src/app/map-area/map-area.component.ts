@@ -1,8 +1,14 @@
+/**
+ * Map area component to create static SVG map and Markers on top of it.
+ * 
+ * onListClick property to capture event trigger on List Area and communicate between 
+ * Map and List component
+ *
+ * @publicApi
+ */
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { DomFactory } from '../shared/dom-helper'
 import { IncidentList } from '../shared/incidentService';
-
-
 
 @Component({
   selector: 'app-map-area',
@@ -10,13 +16,11 @@ import { IncidentList } from '../shared/incidentService';
   styleUrls: ['./map-area.component.css']
 })
 export class MapAreaComponent implements OnInit {
-  div: HTMLElement;
   @Input()
   data: IncidentList[];
   incidentLists: IncidentList[];
   points = []
   modalIncident: any;
-  show: boolean = false;
   incidentMapping = {
     0: 'default.png',
     1: 'jam.png',
@@ -36,8 +40,9 @@ export class MapAreaComponent implements OnInit {
       this.createMarker(this.data)
     }
   }
+
   private createMap() {
-    this.div = document.getElementById('mapView');
+    let map = document.getElementById('mapView');
     let svg = this.dom.createSvg();
 
     this.dom.setAttribute(svg, { "viewBox": "0 0 3094 1865" })
@@ -50,8 +55,9 @@ export class MapAreaComponent implements OnInit {
       "preserveAspectRatio": "none"
     })
     svg.appendChild(staticMap);
-    this.div.appendChild(svg)
+    map.appendChild(svg)
   }
+
   private createMarker(data: IncidentList[]) {
     this.generateLatLon(data)
     this.points.forEach((point, index) => {
@@ -68,8 +74,7 @@ export class MapAreaComponent implements OnInit {
               "width": '100',
               "height": '100',
               "class": "cursor tooltip-trigger",
-              "preserveAspectRatio": "none",
-              "data-tooltip-text": "Left box"
+              "preserveAspectRatio": "none"
             })
           let tooltipTag = this.dom.createSvgText();
           this.dom.setAttribute(tooltipTag,
@@ -102,13 +107,11 @@ export class MapAreaComponent implements OnInit {
           tooltipTag.appendChild(tspan)
 
         }
-        else {
-          //TODO when same lat and long
-        }
       });
     })
 
   }
+
   private generateLatLon(data: IncidentList[]) {
     if (data !== undefined) {
       data.forEach((val) => {
@@ -122,26 +125,26 @@ export class MapAreaComponent implements OnInit {
 
   private showTooltip(incident: any) {
     let tooltip = document.getElementById("tooltip-" + incident);
-    if(tooltip!=undefined)
-    this.dom.setAttribute(tooltip, { "visibility": "visible" });
+    if (tooltip != undefined)
+      this.dom.setAttribute(tooltip, { "visibility": "visible" });
   }
 
   private hideTooltip(incident: any) {
     let tooltip = document.getElementById("tooltip-" + incident);
-    if(tooltip!=undefined)
-    this.dom.setAttribute(tooltip, { "visibility": "hidden" })
-
+    if (tooltip != undefined)
+      this.dom.setAttribute(tooltip, { "visibility": "hidden" })
   }
 
   onListClick() {
-    let id=( <HTMLInputElement >event.target).id;
-    let text=document.querySelectorAll('text');
+    let id = (<HTMLInputElement>event.target).id;
+    let text = document.querySelectorAll('text');
     text.forEach((point) => {
-        point.setAttribute("visibility","hidden")
+      point.setAttribute("visibility", "hidden")
     })
     this.showTooltip(id)
-    setTimeout(()=>{
+    setTimeout(() => {
       this.hideTooltip(id)
-    },2600)
+    }, 2600)
   }
+  
 }

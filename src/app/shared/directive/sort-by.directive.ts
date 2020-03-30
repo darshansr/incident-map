@@ -1,7 +1,7 @@
 import { Directive, Input, Output, HostListener, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: '[appSortBy]'
+  selector: '[appSortBy]'
 })
 
 export class SortByDirective {
@@ -19,8 +19,7 @@ export class SortByDirective {
 
   @HostListener('click')
   onClick() {
-    event.preventDefault();
     this.sorted.next(this.sortProperty); // Raise clicked event
   }
-    
+
 }

@@ -13,8 +13,6 @@ export class IncidentListComponent implements OnInit {
   @Input()
   data: IncidentList[];
   incidentLists: IncidentList[];
-
-  //create an interface to map incident
   incidentMapping: object = {
     0: 'default',
     1: 'Jam',
@@ -27,7 +25,6 @@ export class IncidentListComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
   //load the data into UI template by mapping incident value into new key value
   ngOnChanges(changes: SimpleChanges) {
@@ -49,16 +46,15 @@ export class IncidentListComponent implements OnInit {
             break;
         }
       })
+
       this.incidentLists = this.data;
       this.incidentLists = this.incidentLists.sort((a, b) => b.delay - a.delay);
     }
   }
 
-  //TODO on click of header item in the incident list by ascending and descending
-  public sort(prop: boolean) {
-    this.sortService.sortDelay(this.data, prop);
+  sortHeader(prop: string) {
+    this.sortService.sort(this.data, prop);
   }
-
 
   onMarkerClick() {
     let id = (<HTMLInputElement>event.target).id;

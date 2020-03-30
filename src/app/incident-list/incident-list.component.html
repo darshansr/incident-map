@@ -1,8 +1,8 @@
 <div id="listView" class="left-section">
   <div class="sidebarlist top_bar">
-    <div>Details</div>
-    <div>Type</div>
-    <div>Delay</div>
+    <div >Details</div>
+    <div class="cursor" appSortBy="incident" (sorted)="sortHeader($event)">Type</div>
+    <div class="cursor" appSortBy="delay" (sorted)="sortHeader($event)">Delay</div>
   </div>
   <div class="scrollerDiv">
     <div hide-delay="0" trigger="hover" tooltip="<p>Magnitude of delay <b>{{incident.magnitudeDetails}}</b></p> <p><b>From: </b>{{incident.from}}</p>
