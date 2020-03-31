@@ -28,6 +28,14 @@ export class IncidentService {
             );
     }
 
+    public compareArrayObject(previousValue){
+        return function(currentValue){
+          return previousValue.filter(function(other){
+            return other.id == currentValue.id && other.delay == currentValue.delay;
+          }).length==0;
+        }
+      }
+
 }
 
 /**

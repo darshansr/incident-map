@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, ViewChildren } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { IncidentList } from '../shared/incidentService';
 import { SortService } from '../shared/sort.service';
 
@@ -8,10 +8,9 @@ import { SortService } from '../shared/sort.service';
   templateUrl: './incident-list.component.html',
   styleUrls: ['./incident-list.component.css']
 })
-export class IncidentListComponent implements OnInit {
+export class IncidentListComponent implements OnChanges {
 
-  @Input()
-  data: IncidentList[];
+  @Input() data: IncidentList[];
   incidentLists: IncidentList[];
   incidentMapping: object = {
     0: 'default',
@@ -23,13 +22,12 @@ export class IncidentListComponent implements OnInit {
   constructor(private sortService: SortService) {
   }
 
-  ngOnInit() {
-  }
 
   //load the data into UI template by mapping incident value into new key value
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['data'].currentValue != undefined && this.data) {
+    if (changes['data'].previousValue===undefined && changes['data'].currentValue!==undefined) {
+     //first time data
       this.data.forEach((point) => {
         switch (point.type) {
           case 1:
@@ -46,28 +44,27 @@ export class IncidentListComponent implements OnInit {
             break;
         }
       })
-
-      this.incidentLists = this.data;
-      this.incidentLists = this.incidentLists.sort((a, b) => b.delay - a.delay);
+        this.incidentLists = this.data;
+        this.incidentLists = this.incidentLists.sort((a, b) => b.delay - a.delay);
+      }
     }
+
+    sortHeader(prop: string) {
+      this.sortService.sort(this.data, prop);
+    }
+
+    onMarkerClick() {
+      let id = (<HTMLInputElement>event.target).id;
+      let listDiv = document.querySelector(".scrollerDiv");
+      Array.from(listDiv.children).forEach(function (element) {
+        element.setAttribute("style", "");
+      });
+
+      let text = document.getElementById(id);
+      text.style.backgroundColor = "yellow"
+      setTimeout(() => {
+        text.style.backgroundColor = ""
+      }, 2600)
+    }
+
   }
-
-  sortHeader(prop: string) {
-    this.sortService.sort(this.data, prop);
-  }
-
-  onMarkerClick() {
-    let id = (<HTMLInputElement>event.target).id;
-    let listDiv = document.querySelector(".scrollerDiv");
-    Array.from(listDiv.children).forEach(function (element) {
-      element.setAttribute("style", "");
-    });
-
-    let text = document.getElementById(id);
-    text.style.backgroundColor = "yellow"
-    setTimeout(() => {
-      text.style.backgroundColor = ""
-    }, 2600)
-  }
-
-}

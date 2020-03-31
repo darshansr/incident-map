@@ -1,23 +1,14 @@
-/**
- * Map area component to create static SVG map and Markers on top of it.
- * 
- * onListClick property to capture event trigger on List Area and communicate between 
- * Map and List component
- *
- * @publicApi
- */
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { DomFactory } from '../shared/dom-helper'
-import { IncidentList } from '../shared/incidentService';
+import { IncidentList, IncidentService } from '../shared/incidentService';
 
 @Component({
   selector: 'app-map-area',
   templateUrl: './map-area.component.html',
   styleUrls: ['./map-area.component.css']
 })
-export class MapAreaComponent implements OnInit {
-  @Input()
-  data: IncidentList[];
+export class MapAreaComponent implements OnInit,OnChanges {
+  @Input() data: IncidentList[];
   incidentLists: IncidentList[];
   points = []
   modalIncident: any;
@@ -28,16 +19,24 @@ export class MapAreaComponent implements OnInit {
     3: 'lane_closed.png'
   };
 
-  constructor(private dom: DomFactory) { }
+  constructor(private dom: DomFactory,private incidentService:IncidentService) { }
 
   ngOnInit() {
-    this.createMap()
+    this.createMap()    
   }
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['data']) {
+    if (changes['data'].previousValue!==undefined && changes['data'].currentValue!==undefined){
+      var newMaker= changes['data'].currentValue.filter(this.incidentService.compare(changes['data'].previousValue))
+      this.createMarker(newMaker)
+    }
+    else if(changes['data'].previousValue===undefined && changes['data'].currentValue!==undefined ){
+     //first time changes
       this.createMarker(this.data)
+    }
+    else{
+      //yet to get incident
     }
   }
 

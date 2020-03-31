@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       mergeMap(() => this.incidentService.getIncident())
     )
     .subscribe(val => 
-        this.incidentLists=val
+        this.incidentLists=val.splice(0)
     );
   }
      
